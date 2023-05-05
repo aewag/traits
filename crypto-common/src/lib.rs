@@ -64,14 +64,14 @@ pub trait BlockSizes: ArrayLength<u8> + sealed::BlockSizes + 'static {}
 impl<T: ArrayLength<u8> + sealed::BlockSizes> BlockSizes for T {}
 
 mod sealed {
-    use generic_array::typenum::{Gr, IsGreater, IsLess, Le, NonZero, Unsigned, U1, U256};
+    use generic_array::typenum::{Gr, IsGreater, IsLess, Le, NonZero, Unsigned, U1, U8192};
 
     pub trait BlockSizes {}
 
     impl<T: Unsigned> BlockSizes for T
     where
-        Self: IsLess<U256> + IsGreater<U1>,
-        Le<Self, U256>: NonZero,
+        Self: IsLess<U8192> + IsGreater<U1>,
+        Le<Self, U8192>: NonZero,
         Gr<Self, U1>: NonZero,
     {
     }
